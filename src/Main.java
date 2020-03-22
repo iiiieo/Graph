@@ -13,6 +13,7 @@ public class Main {
         System.out.println(g.toString());
 
         g.searchShortestWay("c4", "c1");
+
     }
 
 }
