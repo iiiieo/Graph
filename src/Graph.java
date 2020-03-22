@@ -168,7 +168,6 @@ public class Graph {
                     currentDistance = distance[indexActiveNode] + distanceToTargetNode;
 
                     if (currentDistance < distance[targetNode]) {
-                        System.out.println(currentDistance);
                         distance[targetNode] = currentDistance;
                         lastNodeIndex[targetNode] = indexActiveNode;
                     }
