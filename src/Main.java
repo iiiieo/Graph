@@ -12,7 +12,7 @@ public class Main {
         g.insertPath("c3", "c4", 100);
         System.out.println(g.toString());
 
-        g.searchShortestWay("c1", "c4");
+        g.searchShortestWay("c4", "c1");
     }
 
 }

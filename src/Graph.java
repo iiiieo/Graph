@@ -157,9 +157,9 @@ public class Graph {
         distance[indexStart] = 0;
         lastNodeIndex[indexStart] = indexStart;
 
-        for (int visitedNode = 0; visitedNode < nodesAmount; visitedNode++) {
+        for (int i = 1; i < nodesAmount; i++) {
             indexActiveNode = getClosestNode();
-            visited[indexStart] = true;
+            visited[indexActiveNode] = true;
 
             for (int targetNode = 0; targetNode < nodesAmount; targetNode++) {
                 int distanceToTargetNode = matrix[indexActiveNode][targetNode];
@@ -168,6 +168,7 @@ public class Graph {
                     currentDistance = distance[indexActiveNode] + distanceToTargetNode;
 
                     if (currentDistance < distance[targetNode]) {
+                        System.out.println(currentDistance);
                         distance[targetNode] = currentDistance;
                         lastNodeIndex[targetNode] = indexActiveNode;
                     }
