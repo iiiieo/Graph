@@ -189,6 +189,7 @@ public class Frame extends JFrame implements ActionListener {
             String branchWeightText = branchWeightInput.getText();
             if (!node1Name.isBlank() && !node2Name.isBlank() && !branchWeightText.isBlank()) {
                 int weight = Integer.valueOf(branchWeightText);
+
                 graph.addPath(node1Name, node2Name, weight);
                 branchNode1Input.setText(null);
                 branchNode2Input.setText(null);
