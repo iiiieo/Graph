@@ -1,7 +1,7 @@
 public class Main {
     public static void main(String[] args){
-        Graph g = new Graph(4);
-        g.insertNode("c1");
+        Graph g = new Graph();
+        /*g.insertNode("c1");
         g.insertNode("c2");
         g.insertNode("c3");
         g.insertNode("c4");
@@ -14,7 +14,8 @@ public class Main {
 
         g.searchShortestWay("c1", "c3");
         g.searchShortestWay("c1", "c2");
-        g.searchShortestWay("c2", "c1");
+        g.searchShortestWay("c2", "c1");*/
+
 
     }
 

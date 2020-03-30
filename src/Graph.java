@@ -7,7 +7,16 @@ public class Graph {
     private int[] distance;
     private int[] lastNodeIndex;
 
+    public Graph() {
+        Frame f = new Frame(this);
+        System.out.println("Created GUI");
+    }
+
     public Graph(int nodeAmount) {
+        init(nodeAmount);
+    }
+
+    public void init(int nodeAmount) {
         this.nodes = new Node[nodeAmount];
         this.matrix = new int[nodeAmount][nodeAmount];
         this.nodesAmount = 0;
@@ -33,7 +42,7 @@ public class Graph {
         return index;
     }
 
-    public void insertNode(String nodeName) {
+    public void addNode(String nodeName) {
         if (nodesAmount < nodes.length) {
             int nodeAlreadyExisting = getNodeIndex(nodeName);
             if (nodeAlreadyExisting == -1 && !nodeName.isBlank()) {
@@ -49,7 +58,7 @@ public class Graph {
         }
     }
 
-    public void insertPath(String place1, String place2, int length) {
+    public void addPath(String place1, String place2, int length) {
         int indexPlace1 = getNodeIndex(place1);
         int indexPlace2 = getNodeIndex(place2);
         matrix[indexPlace1][indexPlace2] = length;
@@ -59,7 +68,10 @@ public class Graph {
     @Override
     public String toString() {
         String output = "Node amount : " + nodesAmount + "\nMax Nodes : " + nodes.length + "\n\nMatrix :";
-
+        output += "\nNodes:\n";
+        for (int i = 0; i < nodesAmount; i++) {
+            output += nodes[i].getName() + ", ";
+        }
         for (int j = 0; j < nodesAmount; j++) {
             output += "\n | ";
             for (int i = 0; i < nodesAmount; i++) {
@@ -90,13 +102,6 @@ public class Graph {
         }
     }
 
-    /*
-     *
-     * Muss nicht gemacht werden
-     * Vgl Buch Seite 118-122
-     * neue Variablen sind hier, weil man sie für den Rest nicht braucht
-     *
-     */
 
     public void searchShortestWayBruteForce(String startNodeName, String endNodeName) {
         int indexStart = getNodeIndex(startNodeName);
@@ -128,6 +133,12 @@ public class Graph {
         visited[indexNode] = false;
     }
 
+    /*
+     *
+     * Vgl Buch Seite 118-122
+     * neue Variablen sind hier, weil man sie für den Rest nicht braucht
+     *
+     */
     private int getClosestNode() {
         int indexOfClosestNode = -1;
         int minimalDistance = Integer.MAX_VALUE;
@@ -141,7 +152,7 @@ public class Graph {
     }
 
     //Greedy-Algorithm by E. W. Dijkstra
-    public void searchShortestWay(String startNodeName, String endNodeName) {
+    public int searchShortestWay(String startNodeName, String endNodeName) {
         int indexStart = getNodeIndex(startNodeName);
         int indexEnd = getNodeIndex(endNodeName);
         int indexActiveNode;
@@ -183,6 +194,6 @@ public class Graph {
             shortestPath = nodes[indexActiveNode].getName() + " - " + shortestPath;
         }
         System.out.println("Shortest Path : " + shortestPath + " - Distance : " + distance[indexEnd]);
-
+        return distance[indexEnd];
     }
 }
