@@ -35,7 +35,7 @@ public class Graph {
     public int getNodeIndex(String nodeName) {
         int index = -1;
         for (int i = 0; i < nodesAmount; i++) {
-            if (nodes[i].getName().equals(nodeName)) {
+            if (nodes[i].getName().equalsIgnoreCase(nodeName)) {
                 index = i;
             }
         }
@@ -61,8 +61,12 @@ public class Graph {
     public void addPath(String place1, String place2, int length) {
         int indexPlace1 = getNodeIndex(place1);
         int indexPlace2 = getNodeIndex(place2);
-        matrix[indexPlace1][indexPlace2] = length;
-        matrix[indexPlace2][indexPlace1] = length;
+        if (indexPlace1 > -1 && indexPlace2 > -1) {
+            matrix[indexPlace1][indexPlace2] = length;
+            matrix[indexPlace2][indexPlace1] = length;
+        } else {
+            System.out.println("One City isn't existing - " + place1 + " : " + place2);
+        }
     }
 
     @Override
